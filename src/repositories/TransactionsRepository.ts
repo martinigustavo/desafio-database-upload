@@ -19,11 +19,16 @@ class TransactionsRepository extends Repository<Transaction> {
       where: { type: 'outcome' },
     });
 
-    const income = incomes.reduce((prev, curr) => prev + curr.value, 0);
+    let total = 0;
 
-    const outcome = outcomes.reduce((prev, curr) => prev + curr.value, 0);
+    const income = incomes.reduce((prev, curr) => prev + Number(curr.value), 0);
 
-    const total = income - outcome;
+    const outcome = outcomes.reduce(
+      (prev, curr) => prev + Number(curr.value),
+      0,
+    );
+
+    total = income - outcome;
 
     const balance = {
       income,
