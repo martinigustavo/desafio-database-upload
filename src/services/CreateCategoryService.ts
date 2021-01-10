@@ -3,7 +3,6 @@ import { getRepository } from 'typeorm';
 // import AppError from '../errors/AppError';
 
 import Category from '../models/Category';
-import CategoriesRepository from '../repositories/CategoriesRepository';
 
 interface Request {
   title: string;
