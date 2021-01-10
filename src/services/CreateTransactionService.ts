@@ -1,6 +1,6 @@
 import { getCustomRepository } from 'typeorm';
 
-// import AppError from '../errors/AppError';
+import AppError from '../errors/AppError';
 import TransactionsRepository from '../repositories/TransactionsRepository';
 import CategoriesRepository from '../repositories/CategoriesRepository';
 import CreateCategoryService from './CreateCategoryService';
@@ -26,6 +26,8 @@ class CreateTransactionService {
 
     const categoryExists = await categoriesRepository.findCategory(category);
 
+    const balance = await transactionsRepository.getBalance();
+
     let category_id;
 
     if (!categoryExists) {
@@ -36,6 +38,14 @@ class CreateTransactionService {
       category_id = newCategory.id;
     } else {
       category_id = categoryExists;
+    }
+
+    if (type === 'outcome') {
+      if (balance.income - value < 0) {
+        throw new AppError(
+          'Invalid balance: not enough income to add a new outcome transaction.',
+        );
+      }
     }
 
     const transaction = transactionsRepository.create({
