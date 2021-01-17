@@ -26,7 +26,7 @@ class CreateTransactionService {
 
     const categoryExists = await categoriesRepository.findCategory(category);
 
-    const balance = await transactionsRepository.getBalance();
+    const { total } = await transactionsRepository.getBalance();
 
     let category_id;
 
@@ -40,12 +40,10 @@ class CreateTransactionService {
       category_id = categoryExists;
     }
 
-    if (type === 'outcome') {
-      if (balance.income - value < 0) {
-        throw new AppError(
-          'Invalid balance: not enough income to add a new outcome transaction.',
-        );
-      }
+    if (type === 'outcome' && total < value) {
+      throw new AppError(
+        'Invalid balance: not enough income to add a new outcome transaction.',
+      );
     }
 
     const transaction = transactionsRepository.create({
