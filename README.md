@@ -1,8 +1,8 @@
 <img alt="GoStack" src="https://storage.googleapis.com/golden-wind/bootcamp-gostack/header-desafios.png" />
 
 [![The MIT License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](http://github.com/martinigustavo/gostack-database-upload/LICENSE.md)
-![GitHub last commit](https://img.shields.io/github/last-commit/martinigustavo/gostack-database-upload?color=green)
-![GitHub top language](https://img.shields.io/github/languages/top/martinigustavo/gostack-database-upload)
+![GitHub last commit](https://img.shields.io/github/last-commit/martinigustavo/desafio-database-upload?color=green)
+![GitHub top language](https://img.shields.io/github/languages/top/martinigustavo/desafio-database-upload)
 
 </div>
 </p>
